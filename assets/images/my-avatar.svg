@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="100%" height="100%">
+  <defs>
+    <linearGradient id="avatarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3a3a3c" />
+      <stop offset="100%" stop-color="#212123" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+  </defs>
+  <rect width="160" height="160" rx="30" fill="url(#avatarGrad)" />
+  <circle cx="80" cy="58" r="28" fill="url(#goldGrad)" opacity="0.9" />
+  <path d="M35 136 C35 102 55 94 80 94 C105 94 125 102 125 136 Z" fill="url(#goldGrad)" opacity="0.9" />
+  <!-- Monogram Initials PA -->
+  <text x="80" y="66" text-anchor="middle" font-family="'Poppins', sans-serif" font-weight="700" font-size="22" fill="#1e1e1f">PA</text>
+</svg>
+

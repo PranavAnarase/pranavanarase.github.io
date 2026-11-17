@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pranav Anarase - Personal Portfolio</title>
+
+  <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css?v=4">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!--
+    - #MAIN
+  -->
+
+  <main>
+
+    <!--
+      - #SIDEBAR
+    -->
+
+    <aside class="sidebar" data-sidebar>
+
+      <div class="sidebar-info">
+
+        <figure class="avatar-box">
+          <img src="./assets/images/my-avatar.jpg" alt="Pranav Anarase" width="80">
+        </figure>
+
+        <div class="info-content">
+          <h1 class="name" title="Pranav Anarase">Pranav Anarase</h1>
+
+          <p class="title">Data Science & Software Developer</p>
+        </div>
+
+        <button class="info_more-btn" data-sidebar-btn>
+          <span>Show Contacts</span>
+
+          <ion-icon name="chevron-down"></ion-icon>
+        </button>
+
+      </div>
+
+      <div class="sidebar-info_more">
+
+        <div class="separator"></div>
+
+        <ul class="contacts-list">
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="mail-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Email</p>
+
+              <a href="mailto:pranavanarase@gmail.com" class="contact-link">pranavanarase@gmail.com</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="phone-portrait-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Phone</p>
+
+              <a href="tel:+917499003474" class="contact-link">+91 7499003474</a>
+            </div>
+
+          </li>
+
+        </ul>
+
+        <div class="separator"></div>
+
+        <ul class="social-list">
+
+          <li class="social-item">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub">
+              <ion-icon name="logo-github"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="mailto:pranavanarase@gmail.com" class="social-link" title="Email">
+              <ion-icon name="mail"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </aside>
+
+
+    <!--
+      - #main-content
+    -->
+
+    <div class="main-content">
+
+      <!--
+        - #NAVBAR
+      -->
+
+      <nav class="navbar">
+
+        <ul class="navbar-list">
+          <li class="navbar-item">
+            <button class="navbar-link active" data-nav-link>About</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Resume</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Portfolio</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Publications</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Contact</button>
+          </li>
+        </ul>
+
+      </nav>
+
+
+      <!--
+        - #ABOUT
+      -->
+
+      <article class="about active" data-page="about">
+
+        <header>
+          <h2 class="h2 article-title">About Me</h2>
+        </header>
+
+        <section class="about-text">
+          <p>
+            I am a B.Tech student in <strong>Computer Science and Engineering (Data Science)</strong> at BRACT's Vishwakarma Institute of Information Technology (VIIT), Pune, maintaining an average CGPA of <strong>8.84</strong>. I have a solid foundation in computer science fundamentals including Object-Oriented Programming, Data Structures & Algorithms, and Operating Systems.
+          </p>
+
+          <p>
+            With hands-on experience in building scalable applications and predictive machine learning models, I am skilled in <strong>Python, C++, JavaScript, and SQL</strong>. As an adaptable learner and former President of DSSA VIIT, I am passionate about applying data-driven solutions and cognitive AI systems to real-world problems in agile and innovative environments.
+          </p>
+        </section>
+
+
+        <!--
+          - service / what I do
+        -->
+
+        <section class="service">
+
+          <h3 class="h3 service-title">What I'm Doing</h3>
+
+          <ul class="service-list">
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <ion-icon name="hardware-chip-outline" style="font-size: 36px; color: var(--accent-cyan); margin: auto;"></ion-icon>
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Data Science & AI/ML</h4>
+
+                <p class="service-item-text">
+                  Building predictive models with Random Forest, XGBoost, local quantized LLMs (Phi-3), FAISS semantic vector indexing, and interactive visualizations.
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <ion-icon name="code-slash-outline" style="font-size: 36px; color: var(--accent-cyan); margin: auto;"></ion-icon>
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Full-Stack Web Development</h4>
+
+                <p class="service-item-text">
+                  Developing responsive, high-performance web applications using React, Express, JavaScript, Streamlit, and modern UI architectures.
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <ion-icon name="server-outline" style="font-size: 36px; color: var(--accent-cyan); margin: auto;"></ion-icon>
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Database & Analytics</h4>
+
+                <p class="service-item-text">
+                  Designing robust schemas and queries across SQL, MySQL, and MongoDB, complemented by business intelligence reporting in Power BI and Tableau.
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <ion-icon name="people-outline" style="font-size: 36px; color: var(--accent-cyan); margin: auto;"></ion-icon>
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Leadership & Coordination</h4>
+
+                <p class="service-item-text">
+                  Extensive leadership experience heading DSSA VIIT (70+ members), managing departmental budgets, spearheading sponsorships, and driving flagship events.
+                </p>
+              </div>
+
+            </li>
+
+          </ul>
+
+        </section>
+
+
+        <!--
+          - Certifications & Highlights
+        -->
+
+        <section class="testimonials">
+
+          <h3 class="h3 testimonials-title">Certifications & Accreditations</h3>
+
+          <ul class="testimonials-list has-scrollbar">
+
+            <li class="testimonials-item">
+              <div class="content-card" data-testimonials-item>
+
+                <div class="testimonials-avatar-box" style="display:flex; justify-content:center; align-items:center; width:65px; height:65px; background:var(--onyx);">
+                  <ion-icon name="ribbon-outline" style="font-size: 32px; color: var(--accent-cyan);"></ion-icon>
+                </div>
+
+                <h4 class="h4 testimonials-item-title" data-testimonials-title>Accenture</h4>
+
+                <div class="testimonials-text" data-testimonials-text>
+                  <p>
+                    <strong>Acquiring Data by Accenture:</strong> Industry certification covering modern data acquisition, quality management, and analytical pipeline construction.
+                  </p>
+                </div>
+
+              </div>
+            </li>
+
+            <li class="testimonials-item">
+              <div class="content-card" data-testimonials-item>
+
+                <div class="testimonials-avatar-box" style="display:flex; justify-content:center; align-items:center; width:65px; height:65px; background:var(--onyx);">
+                  <ion-icon name="medal-outline" style="font-size: 32px; color: var(--accent-cyan);"></ion-icon>
+                </div>
+
+                <h4 class="h4 testimonials-item-title" data-testimonials-title>NLPC-25</h4>
+
+                <div class="testimonials-text" data-testimonials-text>
+                  <p>
+                    <strong>National Level Project Competition:</strong> Selected and recognized at NLPC-25 for technical design and innovative engineering execution.
+                  </p>
+                </div>
+
+              </div>
+            </li>
+
+            <li class="testimonials-item">
+              <div class="content-card" data-testimonials-item>
+
+                <div class="testimonials-avatar-box" style="display:flex; justify-content:center; align-items:center; width:65px; height:65px; background:var(--onyx);">
+                  <ion-icon name="logo-python" style="font-size: 32px; color: var(--accent-cyan);"></ion-icon>
+                </div>
+
+                <h4 class="h4 testimonials-item-title" data-testimonials-title>Data Science with Python</h4>
+
+                <div class="testimonials-text" data-testimonials-text>
+                  <p>
+                    Rigorous practical coursework spanning Python for Data Science, Pandas, NumPy, statistical modeling, and ML algorithm implementation.
+                  </p>
+                </div>
+
+              </div>
+            </li>
+
+            <li class="testimonials-item">
+              <div class="content-card" data-testimonials-item>
+
+                <div class="testimonials-avatar-box" style="display:flex; justify-content:center; align-items:center; width:65px; height:65px; background:var(--onyx);">
+                  <ion-icon name="school-outline" style="font-size: 32px; color: var(--accent-cyan);"></ion-icon>
+                </div>
+
+                <h4 class="h4 testimonials-item-title" data-testimonials-title>Infosys Springboard</h4>
+
+                <div class="testimonials-text" data-testimonials-text>
+                  <p>
+                    Comprehensive course certification in <strong>Elementary Data Structures</strong>, algorithmic problem solving, and object-oriented fundamentals.
+                  </p>
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </section>
+
+
+        <!--
+          - Key Competencies
+        -->
+
+        <section class="clients">
+
+          <h3 class="h3 clients-title">Core Competencies</h3>
+
+          <ul class="clients-list has-scrollbar" style="display: flex; gap: 15px; overflow-x: auto; padding-bottom: 15px;">
+
+            <li class="clients-item" style="min-width: 170px; background: var(--border-gradient-onyx); padding: 15px; border-radius: 12px; text-align: center;">
+              <span style="color: var(--accent-cyan); font-weight: 500;">Python, C & C++</span>
+            </li>
+
+            <li class="clients-item" style="min-width: 170px; background: var(--border-gradient-onyx); padding: 15px; border-radius: 12px; text-align: center;">
+              <span style="color: var(--accent-cyan); font-weight: 500;">Machine Learning & LLMs</span>
+            </li>
+
+            <li class="clients-item" style="min-width: 170px; background: var(--border-gradient-onyx); padding: 15px; border-radius: 12px; text-align: center;">
+              <span style="color: var(--accent-cyan); font-weight: 500;">React, Express, JS</span>
+            </li>
+
+            <li class="clients-item" style="min-width: 170px; background: var(--border-gradient-onyx); padding: 15px; border-radius: 12px; text-align: center;">
+              <span style="color: var(--accent-cyan); font-weight: 500;">SQL, MySQL, MongoDB</span>
+            </li>
+
+            <li class="clients-item" style="min-width: 170px; background: var(--border-gradient-onyx); padding: 15px; border-radius: 12px; text-align: center;">
+              <span style="color: var(--accent-cyan); font-weight: 500;">Power BI, Tableau, Git</span>
+            </li>
+
+          </ul>
+
+        </section>
+
+      </article>
+
+
+      <!--
+        - #RESUME
+      -->
+
+      <article class="resume" data-page="resume">
+
+        <header>
+          <h2 class="h2 article-title">Resume</h2>
+        </header>
+
+        <!-- Education -->
+        <section class="timeline">
+
+          <div class="timeline-title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="book-outline"></ion-icon>
+            </div>
+
+            <h3 class="h3">Education</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">B.Tech in Computer Science & Engineering (Data Science)</h4>
+
+              <time datetime="2023/2027">2023 — 2027</time>
+
+              <p class="timeline-text">
+                <strong>BRACT's, Vishwakarma Institute of Information Technology (VIIT), Pune</strong><br>
+                Average CGPA: <strong>8.84</strong>. In-depth training in Data Structures & Algorithms, Object-Oriented Programming, Operating Systems, Machine Learning, Database Management, and Cloud Architectures.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Higher Secondary Certificate (HSC)</h4>
+
+              <time datetime="2023">2023</time>
+
+              <p class="timeline-text">
+                <strong>Pemraj Sarda College, Ahilyanagar</strong><br>
+                Score: <strong>82.00%</strong> | Ranked <strong>3rd</strong> across Pemraj Sarda College.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Secondary School Certificate (SSC)</h4>
+
+              <time datetime="2021">2021</time>
+
+              <p class="timeline-text">
+                <strong>Bhausaheb Firodiya Highschool, Ahilyanagar</strong><br>
+                Score: <strong>94.00%</strong> with top academic merit.
+              </p>
+
+            </li>
+
+          </ol>
+
+        </section>
+
+        <!-- Experience -->
+        <section class="timeline">
+
+          <div class="timeline-title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="briefcase-outline"></ion-icon>
+            </div>
+
+            <h3 class="h3">Leadership & Experience</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">President — DSSA VIIT</h4>
+
+              <time datetime="2025/2026">Aug 2025 — June 2026</time>
+
+              <p class="timeline-text">
+                Led DSSA by managing a 70+ member team, executing flagship events, collaborating with industry professionals to boost student engagement and visibility, and building strategic inter-club partnerships to drive innovation-focused initiatives.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Treasurer — DSSA VIIT</h4>
+
+              <time datetime="2024/2025">Aug 2024 — June 2025</time>
+
+              <p class="timeline-text">
+                Managed the club’s annual budget and financial operations, ensuring transparency and sustainability. Secured corporate sponsorship from Fateh Education for the Gandharva event to expand its scale and reach, and optimized financial documentation across technical initiatives.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Intern — Techknowgreen Solutions Limited</h4>
+
+              <time datetime="2024">June 2024 — July 2024</time>
+
+              <p class="timeline-text">
+                Sorted and organized digital databases, spreadsheets, and technical reports while ensuring high accuracy and accessibility. Collaborated with teams to analyze operational challenges and explored modern technologies to streamline process workflows.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Finance Head — DSSA VIIT</h4>
+
+              <time datetime="2023/2024">Aug 2023 — June 2024</time>
+
+              <p class="timeline-text">
+                Designed and implemented the financial framework during DSSA’s first-year expansion, coordinating budgets across vendors, sponsors, and core student teams to deliver successful departmental events.
+              </p>
+
+            </li>
+
+          </ol>
+
+        </section>
+
+        <!-- Skills -->
+        <section class="skill">
+
+          <h3 class="h3 skills-title">Technical Proficiency</h3>
+
+          <ul class="skills-list content-card">
+
+            <li class="skills-item">
+
+              <div class="skill-progress-wrapper">
+                <h5 class="h5">Python & Machine Learning (Scikit-Learn, XGBoost, Streamlit, FAISS)</h5>
+                <data value="90">90%</data>
+              </div>
+
+              <div class="skill-progress-bar">
+                <div class="skill-progress" style="width: 90%;"></div>
+              </div>
+
+            </li>
+
+            <li class="skills-item">
+
+              <div class="skill-progress-wrapper">
+                <h5 class="h5">C & C++ (Data Structures, Algorithms, OOP)</h5>
+                <data value="85">85%</data>
+              </div>
+
+              <div class="skill-progress-bar">
+                <div class="skill-progress" style="width: 85%;"></div>
+              </div>
+
+            </li>
+
+            <li class="skills-item">
+
+              <div class="skill-progress-wrapper">
+                <h5 class="h5">Full-Stack Web (JavaScript, React, Express, HTML5/CSS3)</h5>
+                <data value="85">85%</data>
+              </div>
+
+              <div class="skill-progress-bar">
+                <div class="skill-progress" style="width: 85%;"></div>
+              </div>
+
+            </li>
+
+            <li class="skills-item">
+
+              <div class="skill-progress-wrapper">
+                <h5 class="h5">Databases & SQL (MySQL, MongoDB, Query Optimization)</h5>
+                <data value="80">80%</data>
+              </div>
+
+              <div class="skill-progress-bar">
+                <div class="skill-progress" style="width: 80%;"></div>
+              </div>
+
+            </li>
+
+            <li class="skills-item">
+
+              <div class="skill-progress-wrapper">
+                <h5 class="h5">Data Visualization & Tools (Power BI, Tableau, Excel, Git, VS Code)</h5>
+                <data value="75">75%</data>
+              </div>
+
+              <div class="skill-progress-bar">
+                <div class="skill-progress" style="width: 75%;"></div>
+              </div>
+
+            </li>
+
+          </ul>
+
+        </section>
+
+      </article>
+
+
+      <!--
+        - #PORTFOLIO
+      -->
+
+      <article class="portfolio" data-page="portfolio">
+
+        <header>
+          <h2 class="h2 article-title">Featured Projects</h2>
+        </header>
+
+        <section class="projects">
+
+          <ul class="filter-list">
+
+            <li class="filter-item">
+              <button class="active" data-filter-btn>All</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>AI & Machine Learning</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>Web Applications</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>Hackathons</button>
+            </li>
+
+          </ul>
+
+          <div class="filter-select-box">
+
+            <button class="filter-select" data-select>
+
+              <div class="select-value" data-selecct-value>Select category</div>
+
+              <div class="select-icon">
+                <ion-icon name="chevron-down"></ion-icon>
+              </div>
+
+            </button>
+
+            <ul class="select-list">
+
+              <li class="select-item">
+                <button data-select-item>All</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>AI & Machine Learning</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Web Applications</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Hackathons</button>
+              </li>
+
+            </ul>
+
+          </div>
+
+          <ul class="project-list">
+
+            <!-- Project 1: AI Secondary Brain -->
+            <li class="project-item active" data-filter-item data-category="ai & machine learning">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-1.svg" alt="AI Secondary Brain" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">AI Secondary Brain – Personal Cognitive OS</h3>
+
+                <p class="project-category">AI & Machine Learning | AMD Slingshot 2026</p>
+                <p style="font-size: var(--fs-8); color: var(--light-gray); margin: 6px 10px 0;">
+                  GPU-accelerated Cognitive OS that unifies conversations, documents, and emails into persistent semantic memory using SentenceTransformers and FAISS with a 4-bit quantized local LLM (Phi-3).
+                </p>
+
+              </a>
+            </li>
+
+            <!-- Project 2: NeuroCampus -->
+            <li class="project-item active" data-filter-item data-category="hackathons">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-2.svg" alt="NeuroCampus Recommendation System" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">NeuroCampus – AI College Recommender</h3>
+
+                <p class="project-category">Hackathons | A2Hackfest 2025</p>
+                <p style="font-size: var(--fs-8); color: var(--light-gray); margin: 6px 10px 0;">
+                  AI-powered recommendation engine that predicts top engineering colleges based on MHT-CET percentile scores using qRaptor AI platform and intuitive mobile-friendly UI.
+                </p>
+
+              </a>
+            </li>
+
+            <!-- Project 3: Symptom Disease Prediction -->
+            <li class="project-item active" data-filter-item data-category="ai & machine learning">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-3.svg" alt="Symptom-Based Disease Prediction" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Symptom-Based Disease Prediction Web App</h3>
+
+                <p class="project-category">AI & Machine Learning</p>
+                <p style="font-size: var(--fs-8); color: var(--light-gray); margin: 6px 10px 0;">
+                  Interactive Streamlit web application integrating a hybrid ML model (Random Forest, XGBoost, Voting Classifier) trained on 80+ symptoms and 20+ diseases with Seaborn visualizations.
+                </p>
+
+              </a>
+            </li>
+
+            <!-- Project 4: EcoTrack -->
+            <li class="project-item active" data-filter-item data-category="web applications">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-4.svg" alt="EcoTrack Waste Management" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">EcoTrack – Smart Waste Management Platform</h3>
+
+                <p class="project-category">Web Applications | Google Solutions Challenge</p>
+                <p style="font-size: var(--fs-8); color: var(--light-gray); margin: 6px 10px 0;">
+                  Impactful platform engineered for the Google Solutions Challenge with smart disposal education, community cleanup tracking, real-time analytics, and gamified engagement.
+                </p>
+
+              </a>
+            </li>
+
+          </ul>
+
+        </section>
+
+      </article>
+
+
+      <!--
+        - #PUBLICATIONS / BLOG
+      -->
+
+      <article class="blog" data-page="publications">
+
+        <header>
+          <h2 class="h2 article-title">Publications & Achievements</h2>
+        </header>
+
+        <section class="blog-posts">
+
+          <ul class="blog-posts-list">
+
+            <li class="blog-post-item">
+              <a href="#">
+
+                <figure class="blog-banner-box">
+                  <img src="./assets/images/blog-1.svg?v=3" alt="Advancements in Personal Health" loading="lazy">
+                </figure>
+
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category">Research Paper</p>
+
+                    <span class="dot"></span>
+
+                    <time datetime="2024">Research Project</time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">Advancements in Personal Health: Integrating Wearable Devices for Smart Monitoring Systems</h3>
+
+                  <p class="blog-text">
+                    Developed a research paper on smart health monitoring systems highlighting advancements in wearable sensor integration, real-time data acquisition, and AI-driven personal healthcare.
+                  </p>
+
+                </div>
+
+              </a>
+            </li>
+
+            <li class="blog-post-item">
+              <a href="#">
+
+                <figure class="blog-banner-box">
+                  <img src="./assets/images/blog-2.svg" alt="Cognitive OS" loading="lazy">
+                </figure>
+
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category">System Architecture</p>
+
+                    <span class="dot"></span>
+
+                    <time datetime="2026">Slingshot 2026</time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">AI Secondary Brain: On-Device Cognitive OS with Local LLMs</h3>
+
+                  <p class="blog-text">
+                    Engineered cross-session contextual intelligence utilizing 4-bit quantized Phi-3, FAISS vector indexing, and memory linking optimized for RTX-class GPUs.
+                  </p>
+
+                </div>
+
+              </a>
+            </li>
+
+            <li class="blog-post-item">
+              <a href="#">
+
+                <figure class="blog-banner-box">
+                  <img src="./assets/images/blog-3.svg" alt="Academic Distinction" loading="lazy">
+                </figure>
+
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category">Academic Honor</p>
+
+                    <span class="dot"></span>
+
+                    <time datetime="2023">Award</time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">Ranked 3rd in Pemraj Sarda College (HSC Board Examination)</h3>
+
+                  <p class="blog-text">
+                    Achieved 82.00% securing the 3rd rank college-wide, following a distinguished 94.00% result in the Secondary School Certificate (SSC) examination.
+                  </p>
+
+                </div>
+
+              </a>
+            </li>
+
+          </ul>
+
+        </section>
+
+      </article>
+
+
+      <!--
+        - #CONTACT
+      -->
+
+      <article class="contact" data-page="contact">
+
+        <header>
+          <h2 class="h2 article-title">Contact</h2>
+        </header>
+
+        <section style="margin-bottom: 30px;">
+          <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;">
+            <li class="content-card" style="display: flex; align-items: center; gap: 18px; padding: 22px 20px;">
+              <div class="icon-box" style="width: 48px; height: 48px; font-size: 24px; border-radius: 12px; flex-shrink: 0;">
+                <ion-icon name="mail-outline"></ion-icon>
+              </div>
+              <div>
+                <p style="color: var(--light-gray-70); font-size: var(--fs-8); text-transform: uppercase; margin-bottom: 4px;">Email Address</p>
+                <a href="mailto:pranavanarase@gmail.com" class="contact-link" style="color: var(--white-2); font-size: var(--fs-6); font-weight: 500; word-break: break-all;">pranavanarase@gmail.com</a>
+              </div>
+            </li>
+
+            <li class="content-card" style="display: flex; align-items: center; gap: 18px; padding: 22px 20px;">
+              <div class="icon-box" style="width: 48px; height: 48px; font-size: 24px; border-radius: 12px; flex-shrink: 0;">
+                <ion-icon name="call-outline"></ion-icon>
+              </div>
+              <div>
+                <p style="color: var(--light-gray-70); font-size: var(--fs-8); text-transform: uppercase; margin-bottom: 4px;">Phone Number</p>
+                <a href="tel:+917499003474" class="contact-link" style="color: var(--white-2); font-size: var(--fs-6); font-weight: 500;">+91 7499003474</a>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <section class="contact-form">
+
+          <h3 class="h3 form-title">Contact Form</h3>
+
+          <form action="https://api.web3forms.com/submit" method="POST" class="form" data-form>
+
+            <input type="hidden" name="access_key" value="0c06d673-38c8-4087-9a95-c256d37dba19">
+            <input type="hidden" name="from_name" value="Portfolio Visitor">
+            <input type="hidden" name="subject" value="New Portfolio Message for Pranav">
+
+            <div class="input-wrapper">
+              <input type="text" name="name" class="form-input" placeholder="Full name" required data-form-input>
+
+              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+            </div>
+
+            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+
+            <button class="form-btn" type="submit" disabled data-form-btn>
+              <ion-icon name="paper-plane"></ion-icon>
+              <span>Send Message</span>
+            </button>
+
+            <div class="form-status" data-form-status style="display: none; margin-top: 18px; padding: 12px 18px; border-radius: 12px; font-size: var(--fs-6); text-align: center;"></div>
+
+          </form>
+
+        </section>
+
+      </article>
+
+    </div>
+
+  </main>
+
+
+  <!--
+    - custom js link
+  -->
+  <script src="./assets/js/script.js?v=3"></script>
+
+  <!--
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

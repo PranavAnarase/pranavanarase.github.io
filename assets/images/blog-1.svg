@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" width="400" height="250">
+  <defs>
+    <linearGradient id="bgb1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#090d16" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="250" fill="url(#bgb1)" />
+  <rect x="150" y="60" width="100" height="90" rx="15" fill="none" stroke="#38bdf8" stroke-width="2.5" />
+  <circle cx="200" cy="105" r="22" fill="#38bdf8" opacity="0.3" />
+  <path d="M190 105 L196 112 L210 98" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="200" y="185" text-anchor="middle" font-family="'Poppins', sans-serif" font-weight="600" font-size="15" fill="#ffffff">SMART WEARABLE HEALTH</text>
+  <text x="200" y="210" text-anchor="middle" font-family="'Poppins', sans-serif" font-weight="400" font-size="12" fill="#38bdf8">Research Project &amp; Paper</text>
+</svg>
