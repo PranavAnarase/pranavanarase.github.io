@@ -269,89 +269,80 @@ if (navigationLinks && pages) {
 // ----------------------------------------------------
 async function initLiquidGlassEffect() {
   try {
-    // Wait for fonts so geometry is stable
+    if (window.innerWidth <= 768) return; // Desktop only
+
     if (document.fonts && document.fonts.ready) {
       await document.fonts.ready;
     }
 
-    // Try dynamic module import of local liquidglass library
     const { LiquidGlass } = await import("./liquidglass.js");
-
-    const rootEl = document.getElementById("portfolio-root") || document.body;
-    const glassElements = [];
-
-    // 1. Sliding Tab Indicator
-    const indicatorEl = document.getElementById("glass-tab-indicator");
-    if (indicatorEl) {
-      indicatorEl.dataset.config = JSON.stringify({
-        bevelMode: 0,
-        cornerRadius: 18,
-        zRadius: 16,
-        blurAmount: 0.15,
-        refraction: 0.85,
-        chromAberration: 0.08,
-        edgeHighlight: 0.25,
-        shadowOpacity: 0.35,
-        specular: 0.5
-      });
-      glassElements.push(indicatorEl);
-    }
-
-    // 2. Sidebar Profile Glass Card
-    const sidebarGlass = document.getElementById("glass-sidebar-card");
-    if (sidebarGlass) {
-      sidebarGlass.dataset.config = JSON.stringify({
-        cornerRadius: 22,
-        zRadius: 18,
-        blurAmount: 0.15,
-        chromAberration: 0.06,
-        refraction: 0.7,
-        edgeHighlight: 0.18,
-        tintStrength: 0.05
-      });
-      glassElements.push(sidebarGlass);
-    }
-
-    // 3. Floating Draggable Dome Magnifier Lens (bevelMode: 1)
     const magnifierEl = document.getElementById("glass-magnifier");
-    if (magnifierEl && window.innerWidth > 768) {
+
+    if (magnifierEl) {
       magnifierEl.dataset.config = JSON.stringify({
-        bevelMode: 1, // Dome / half-sphere magnifier lens
+        bevelMode: 1, // Dome magnifier lens
         cornerRadius: 32,
         zRadius: 32,
-        floating: true, // Draggable via Pointer Events
-        blurAmount: 0,
-        refraction: 1.25,
-        edgeHighlight: 0.3,
+        floating: false, // Managed by our high-performance drag controller
+        blurAmount: 0.1,
+        refraction: 1.1,
+        edgeHighlight: 0.35,
         shadowOpacity: 0.35
       });
-      glassElements.push(magnifierEl);
-    }
 
-    // 4. Interactive Glass Buttons (button: true)
-    const glassButtons = document.querySelectorAll(".glass-btn");
-    glassButtons.forEach(btn => {
-      btn.dataset.config = JSON.stringify({
-        button: true, // Tactile hover lift + press bevel flattening
-        cornerRadius: 14,
-        zRadius: 12,
-        blurAmount: 0.2,
-        specular: 0.5,
-        edgeHighlight: 0.2
-      });
-      glassElements.push(btn);
-    });
-
-    if (glassElements.length > 0) {
       await LiquidGlass.init({
-        root: rootEl,
-        glassElements: glassElements
+        root: document.body,
+        glassElements: [magnifierEl]
       });
-      console.log("LiquidGlass (ybouane/liquidglass) initialized successfully with", glassElements.length, "elements.");
+      console.log("LiquidGlass Dome Magnifier initialized successfully.");
     }
   } catch (err) {
-    console.warn("LiquidGlass WebGL initialization skipped or fallback active:", err);
+    console.warn("LiquidGlass WebGL initialization fallback active:", err);
   }
 }
 
+// ----------------------------------------------------
+// 9. Floating Glass Magnifier Lens Drag Controller
+// ----------------------------------------------------
+function initMagnifierDrag() {
+  const magnifier = document.getElementById("glass-magnifier");
+  if (!magnifier) return;
+
+  let isDragging = false;
+  let startX = 0, startY = 0;
+  let currentX = 0, currentY = 0;
+
+  const onPointerDown = (e) => {
+    isDragging = true;
+    startX = e.clientX - currentX;
+    startY = e.clientY - currentY;
+    magnifier.style.cursor = "grabbing";
+    try {
+      magnifier.setPointerCapture(e.pointerId);
+    } catch (_) {}
+  };
+
+  const onPointerMove = (e) => {
+    if (!isDragging) return;
+    currentX = e.clientX - startX;
+    currentY = e.clientY - startY;
+    magnifier.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+  };
+
+  const onPointerUp = (e) => {
+    if (!isDragging) return;
+    isDragging = false;
+    magnifier.style.cursor = "grab";
+    try {
+      magnifier.releasePointerCapture(e.pointerId);
+    } catch (_) {}
+  };
+
+  magnifier.addEventListener("pointerdown", onPointerDown);
+  magnifier.addEventListener("pointermove", onPointerMove);
+  magnifier.addEventListener("pointerup", onPointerUp);
+  magnifier.addEventListener("pointercancel", onPointerUp);
+}
+
+initMagnifierDrag();
 initLiquidGlassEffect();

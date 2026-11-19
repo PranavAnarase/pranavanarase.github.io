@@ -1859,8 +1859,6 @@ var LiquidGlass = class _LiquidGlass {
   // Lifecycle
   // ────────────────────────────────────────────
   async _start() {
-    this.root.style.userSelect = "none";
-    this.root.style.webkitUserSelect = "none";
     this._setupGlassElements();
     this._hasDynamic = this._detectDynamic();
     this._sortedChildren = this._getSortedChildren();
@@ -2596,7 +2594,7 @@ var LiquidGlass = class _LiquidGlass {
     } else {
       this._sceneCtx.clearRect(0, 0, width, height);
     }
-    this._sceneCtx.fillStyle = "#ffffff";
+    this._sceneCtx.fillStyle = "#080c14";
     this._sceneCtx.fillRect(0, 0, width, height);
   }
   _glassHasDynamicContributors(currentGlass, sampleRect, rootRect, dpr) {
