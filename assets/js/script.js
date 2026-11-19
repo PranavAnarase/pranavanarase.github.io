@@ -219,33 +219,38 @@ function updateGlassTabIndicator(activeBtn) {
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
 const pages = document.querySelectorAll("[data-page]");
 
+function navigateToPage(pageName) {
+  const target = (pageName || "").toLowerCase().trim();
+  let pageFound = false;
+
+  navigationLinks.forEach(btn => {
+    if (btn.textContent.trim().toLowerCase() === target) {
+      navigationLinks.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      updateGlassTabIndicator(btn);
+    }
+  });
+
+  pages.forEach(page => {
+    const name = (page.dataset.page || "").toLowerCase().trim();
+    if (name === target) {
+      page.classList.add("active");
+      pageFound = true;
+    } else {
+      page.classList.remove("active");
+    }
+  });
+
+  if (pageFound) {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+}
+
 if (navigationLinks && pages) {
   navigationLinks.forEach(navBtn => {
     navBtn.addEventListener("click", function () {
       const targetPage = this.textContent.trim().toLowerCase();
-
-      // Update active nav button
-      navigationLinks.forEach(btn => btn.classList.remove("active"));
-      this.classList.add("active");
-
-      // Slide the iOS Liquid Glass Indicator
-      updateGlassTabIndicator(this);
-
-      // Switch active article page
-      let pageFound = false;
-      pages.forEach(page => {
-        const pageName = (page.dataset.page || "").trim().toLowerCase();
-        if (pageName === targetPage) {
-          page.classList.add("active");
-          pageFound = true;
-        } else {
-          page.classList.remove("active");
-        }
-      });
-
-      if (pageFound) {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
+      navigateToPage(targetPage);
     });
   });
 
@@ -302,46 +307,318 @@ async function initLiquidGlassEffect() {
 }
 
 // ----------------------------------------------------
-// 9. Floating Glass Magnifier Lens Drag Controller
+// 9. Apple Spotlight / iOS Liquid Glass Search Palette
+// ----------------------------------------------------
+const searchIndex = [
+  // Projects
+  {
+    title: "AI Secondary Brain & Automation Framework",
+    desc: "Autonomous workflow system using LangChain, NLP, and Python for context retrieval and scheduling.",
+    category: "project",
+    page: "portfolio",
+    icon: "hardware-chip-outline"
+  },
+  {
+    title: "NeuroCampus - Smart Campus Management",
+    desc: "Full-stack MERN portal with real-time analytics, event management, and automated student workflows.",
+    category: "project",
+    page: "portfolio",
+    icon: "school-outline"
+  },
+  {
+    title: "Intelligent Disease Predictor",
+    desc: "Multi-condition ML diagnosis platform achieving 94%+ accuracy with clinical parameter evaluation.",
+    category: "project",
+    page: "portfolio",
+    icon: "pulse-outline"
+  },
+  {
+    title: "EcoTrack - Carbon Footprint Analyzer",
+    desc: "IoT & Flask dashboard visualizing household emissions and recommending energy optimizations.",
+    category: "project",
+    page: "portfolio",
+    icon: "leaf-outline"
+  },
+  // Leadership & Experience
+  {
+    title: "Vice President - DSSA VIIT",
+    desc: "Leadership role directing student development, data science hackathons, and technical bootcamps.",
+    category: "experience",
+    page: "resume",
+    icon: "ribbon-outline"
+  },
+  {
+    title: "Technical Team Lead - DSSA VIIT",
+    desc: "Headed project development teams and conducted hands-on technical workshops in Python & ML.",
+    category: "experience",
+    page: "resume",
+    icon: "code-working-outline"
+  },
+  // Education
+  {
+    title: "B.Tech CSE - Data Science (VIIT Pune)",
+    desc: "Vishwakarma Institute of Information Technology, Pune. Current CGPA: 8.84.",
+    category: "education",
+    page: "resume",
+    icon: "medal-outline"
+  },
+  {
+    title: "Higher Secondary Certificate (HSC) - 89.60%",
+    desc: "Maharashtra State Board of Secondary and Higher Secondary Education.",
+    category: "education",
+    page: "resume",
+    icon: "document-text-outline"
+  },
+  {
+    title: "Secondary School Certificate (SSC) - 93.40%",
+    desc: "Maharashtra State Board of Secondary and Higher Secondary Education.",
+    category: "education",
+    page: "resume",
+    icon: "book-outline"
+  },
+  // Skills
+  {
+    title: "Core Technologies & Languages",
+    desc: "Python, C++, Java, Machine Learning, Deep Learning, NLP, React, Node.js, SQL, Git.",
+    category: "skills",
+    page: "resume",
+    icon: "construct-outline"
+  },
+  // Research & Publications
+  {
+    title: "Advancements in Personal Health & Medical Devices",
+    desc: "Published research exploring IoT health sensors, edge computing, and real-time medical alert algorithms.",
+    category: "publication",
+    page: "publications",
+    icon: "journal-outline"
+  },
+  // Contact
+  {
+    title: "Contact & Inquiries",
+    desc: "Reach Pranav via email (pranavanarase@gmail.com), phone (+91 7499003474), or send a direct message.",
+    category: "contact",
+    page: "contact",
+    icon: "mail-outline"
+  }
+];
+
+const searchModal = document.getElementById("search-modal");
+const searchBackdrop = document.getElementById("search-backdrop");
+const searchInput = document.getElementById("search-input");
+const searchCloseBtn = document.getElementById("search-close-btn");
+const searchResultsList = document.getElementById("search-results-list");
+const searchEmptyState = document.getElementById("search-empty-state");
+const searchQueryEcho = document.getElementById("search-query-echo");
+const searchTags = document.querySelectorAll(".search-tag");
+
+let activeFilter = "all";
+let currentQuery = "";
+let selectedResultIndex = 0;
+
+function openSearchModal() {
+  if (!searchModal) return;
+  searchModal.classList.add("active");
+  searchModal.setAttribute("aria-hidden", "false");
+  if (searchInput) {
+    searchInput.value = "";
+    currentQuery = "";
+    setTimeout(() => searchInput.focus(), 50);
+  }
+  renderSearchResults();
+}
+
+function closeSearchModal() {
+  if (!searchModal) return;
+  searchModal.classList.remove("active");
+  searchModal.setAttribute("aria-hidden", "true");
+}
+
+function toggleSearchModal() {
+  if (searchModal && searchModal.classList.contains("active")) {
+    closeSearchModal();
+  } else {
+    openSearchModal();
+  }
+}
+
+function renderSearchResults() {
+  if (!searchResultsList) return;
+
+  const q = currentQuery.toLowerCase().trim();
+  const filtered = searchIndex.filter(item => {
+    const matchesFilter = (activeFilter === "all" || item.category === activeFilter);
+    const matchesQuery = !q || 
+      item.title.toLowerCase().includes(q) || 
+      item.desc.toLowerCase().includes(q) ||
+      item.category.toLowerCase().includes(q);
+    return matchesFilter && matchesQuery;
+  });
+
+  searchResultsList.innerHTML = "";
+  selectedResultIndex = 0;
+
+  if (filtered.length === 0) {
+    searchResultsList.style.display = "none";
+    if (searchEmptyState) {
+      searchEmptyState.style.display = "flex";
+      if (searchQueryEcho) searchQueryEcho.textContent = currentQuery;
+    }
+    return;
+  }
+
+  searchResultsList.style.display = "flex";
+  if (searchEmptyState) searchEmptyState.style.display = "none";
+
+  filtered.forEach((item, index) => {
+    const li = document.createElement("li");
+    li.className = `search-result-item ${index === 0 ? "selected" : ""}`;
+    li.setAttribute("role", "button");
+    li.setAttribute("tabindex", "0");
+
+    li.innerHTML = `
+      <div class="search-result-left">
+        <div class="search-result-icon">
+          <ion-icon name="${item.icon}"></ion-icon>
+        </div>
+        <div class="search-result-text">
+          <span class="search-result-title">${item.title}</span>
+          <span class="search-result-desc">${item.desc}</span>
+        </div>
+      </div>
+      <span class="search-result-badge badge-${item.category}">${item.category}</span>
+    `;
+
+    const triggerSelect = () => {
+      closeSearchModal();
+      navigateToPage(item.page);
+    };
+
+    li.addEventListener("click", triggerSelect);
+    li.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") triggerSelect();
+    });
+
+    searchResultsList.appendChild(li);
+  });
+}
+
+// Search input listener
+if (searchInput) {
+  searchInput.addEventListener("input", (e) => {
+    currentQuery = e.target.value;
+    renderSearchResults();
+  });
+
+  searchInput.addEventListener("keydown", (e) => {
+    const items = searchResultsList ? searchResultsList.querySelectorAll(".search-result-item") : [];
+    if (!items.length) return;
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      items[selectedResultIndex]?.classList.remove("selected");
+      selectedResultIndex = (selectedResultIndex + 1) % items.length;
+      items[selectedResultIndex]?.classList.add("selected");
+      items[selectedResultIndex]?.scrollIntoView({ block: "nearest" });
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      items[selectedResultIndex]?.classList.remove("selected");
+      selectedResultIndex = (selectedResultIndex - 1 + items.length) % items.length;
+      items[selectedResultIndex]?.classList.add("selected");
+      items[selectedResultIndex]?.scrollIntoView({ block: "nearest" });
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      items[selectedResultIndex]?.click();
+    }
+  });
+}
+
+// Category filter tag clicks
+if (searchTags) {
+  searchTags.forEach(tag => {
+    tag.addEventListener("click", function () {
+      searchTags.forEach(t => t.classList.remove("active"));
+      this.classList.add("active");
+      activeFilter = this.dataset.filter || "all";
+      renderSearchResults();
+    });
+  });
+}
+
+// Close events
+if (searchCloseBtn) searchCloseBtn.addEventListener("click", closeSearchModal);
+if (searchBackdrop) searchBackdrop.addEventListener("click", closeSearchModal);
+
+window.addEventListener("keydown", (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+    e.preventDefault();
+    toggleSearchModal();
+  }
+  if (e.key === "Escape") {
+    closeSearchModal();
+  }
+});
+
+// ----------------------------------------------------
+// 10. Floating Glass Magnifier Lens Drag & Search Trigger
 // ----------------------------------------------------
 function initMagnifierDrag() {
   const magnifier = document.getElementById("glass-magnifier");
   if (!magnifier) return;
 
-  let isDragging = false;
+  let isPointerDown = false;
+  let startPointerX = 0, startPointerY = 0;
   let startX = 0, startY = 0;
   let currentX = 0, currentY = 0;
+  let hasMoved = false;
 
   const onPointerDown = (e) => {
-    isDragging = true;
+    isPointerDown = true;
+    hasMoved = false;
+    startPointerX = e.clientX;
+    startPointerY = e.clientY;
     startX = e.clientX - currentX;
     startY = e.clientY - currentY;
-    magnifier.style.cursor = "grabbing";
     try {
       magnifier.setPointerCapture(e.pointerId);
     } catch (_) {}
   };
 
   const onPointerMove = (e) => {
-    if (!isDragging) return;
-    currentX = e.clientX - startX;
-    currentY = e.clientY - startY;
-    magnifier.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+    if (!isPointerDown) return;
+    if (Math.hypot(e.clientX - startPointerX, e.clientY - startPointerY) > 6) {
+      hasMoved = true;
+      magnifier.style.cursor = "grabbing";
+      currentX = e.clientX - startX;
+      currentY = e.clientY - startY;
+      magnifier.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+    }
   };
 
   const onPointerUp = (e) => {
-    if (!isDragging) return;
-    isDragging = false;
+    if (!isPointerDown) return;
+    isPointerDown = false;
     magnifier.style.cursor = "grab";
     try {
       magnifier.releasePointerCapture(e.pointerId);
     } catch (_) {}
+
+    // Clean tap/click opens the Search Modal
+    if (!hasMoved) {
+      openSearchModal();
+    }
   };
 
   magnifier.addEventListener("pointerdown", onPointerDown);
   magnifier.addEventListener("pointermove", onPointerMove);
   magnifier.addEventListener("pointerup", onPointerUp);
   magnifier.addEventListener("pointercancel", onPointerUp);
+
+  magnifier.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      openSearchModal();
+    }
+  });
 }
 
 initMagnifierDrag();

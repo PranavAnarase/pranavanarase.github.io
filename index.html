@@ -15,7 +15,7 @@
   <!--
     - custom css link
   -->
-  <link rel="stylesheet" href="./assets/css/style.css?v=7">
+  <link rel="stylesheet" href="./assets/css/style.css?v=8">
 
   <!--
     - google font link
@@ -954,11 +954,61 @@
   </main>
 
   <!--
-    - LiquidGlass Floating Dome Magnifier Lens (ybouane/liquidglass bevelMode: 1)
+    - Apple Spotlight / iOS Liquid Glass Search Floating Trigger
   -->
-  <div id="glass-magnifier" class="glass-magnifier" title="Drag me across the page!">
+  <div id="glass-magnifier" class="glass-magnifier" title="Search Portfolio (Ctrl + K)" role="button" tabindex="0" aria-label="Search Portfolio">
     <div class="magnifier-inner">
       <ion-icon name="search-outline"></ion-icon>
+    </div>
+  </div>
+
+  <!--
+    - Apple Spotlight / iOS Liquid Glass Search Modal
+  -->
+  <div id="search-modal" class="search-modal" aria-hidden="true">
+    <div class="search-backdrop" id="search-backdrop"></div>
+    <div class="search-dialog" role="dialog" aria-modal="true" aria-label="Search Portfolio">
+      
+      <div class="search-header">
+        <ion-icon name="search-outline" class="search-icon"></ion-icon>
+        <input 
+          type="text" 
+          id="search-input" 
+          class="search-input" 
+          placeholder="Search projects, skills, experience, papers... (Esc to close)" 
+          autocomplete="off"
+          spellcheck="false"
+        >
+        <button id="search-close-btn" class="search-close-btn" aria-label="Close search">
+          <span class="esc-badge">ESC</span>
+        </button>
+      </div>
+
+      <div class="search-tags" id="search-tags">
+        <button class="search-tag active" data-filter="all">All</button>
+        <button class="search-tag" data-filter="project">Projects</button>
+        <button class="search-tag" data-filter="experience">Experience</button>
+        <button class="search-tag" data-filter="education">Education</button>
+        <button class="search-tag" data-filter="skills">Skills</button>
+        <button class="search-tag" data-filter="publication">Publications</button>
+      </div>
+
+      <div class="search-body">
+        <ul class="search-results-list" id="search-results-list">
+          <!-- Populated by JavaScript -->
+        </ul>
+        <div class="search-empty-state" id="search-empty-state" style="display: none;">
+          <ion-icon name="alert-circle-outline"></ion-icon>
+          <p>No matching results found for "<span id="search-query-echo"></span>"</p>
+        </div>
+      </div>
+
+      <div class="search-footer">
+        <span><kbd>↑</kbd> <kbd>↓</kbd> to navigate</span>
+        <span><kbd>↵</kbd> to select</span>
+        <span><kbd>ESC</kbd> to close</span>
+      </div>
+
     </div>
   </div>
 
@@ -966,7 +1016,7 @@
   <!--
     - custom js link
   -->
-  <script type="module" src="./assets/js/script.js?v=8"></script>
+  <script type="module" src="./assets/js/script.js?v=9"></script>
 
   <!--
     - ionicon link
