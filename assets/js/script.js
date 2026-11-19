@@ -191,17 +191,26 @@ if (form && formInputs && formBtn) {
 }
 
 // ----------------------------------------------------
-// 6. Sliding Liquid Glass Tab Indicator
+// 6. Sliding Liquid Glass Tab Indicator (Apple iOS / visionOS)
 // ----------------------------------------------------
 const glassTabIndicator = document.getElementById("glass-tab-indicator");
 
 function updateGlassTabIndicator(activeBtn) {
   if (!glassTabIndicator || !activeBtn) return;
-  const rect = activeBtn.getBoundingClientRect();
-  const navRect = activeBtn.parentElement.parentElement.getBoundingClientRect();
-  const left = rect.left - navRect.left;
-  glassTabIndicator.style.width = `${rect.width}px`;
-  glassTabIndicator.style.transform = `translateX(${left}px)`;
+  const parent = glassTabIndicator.parentElement;
+  if (!parent) return;
+
+  const btnRect = activeBtn.getBoundingClientRect();
+  const parentRect = parent.getBoundingClientRect();
+
+  // Precise pixel coordinates relative to the navbar container
+  const left = btnRect.left - parentRect.left;
+  const top = btnRect.top - parentRect.top;
+
+  glassTabIndicator.style.width = `${btnRect.width}px`;
+  glassTabIndicator.style.height = `${btnRect.height}px`;
+  glassTabIndicator.style.transform = `translate(${left}px, ${top}px)`;
+  glassTabIndicator.style.opacity = '1';
 }
 
 // ----------------------------------------------------
@@ -219,7 +228,7 @@ if (navigationLinks && pages) {
       navigationLinks.forEach(btn => btn.classList.remove("active"));
       this.classList.add("active");
 
-      // Slide the Liquid Glass Indicator
+      // Slide the iOS Liquid Glass Indicator
       updateGlassTabIndicator(this);
 
       // Switch active article page
@@ -240,15 +249,19 @@ if (navigationLinks && pages) {
     });
   });
 
-  // Position initial indicator on page load
-  window.addEventListener("load", () => {
+  // Position initial indicator on page load & font readiness
+  const updateInitialIndicator = () => {
     const activeLink = document.querySelector(".navbar-link.active");
     if (activeLink) updateGlassTabIndicator(activeLink);
-  });
-  window.addEventListener("resize", () => {
-    const activeLink = document.querySelector(".navbar-link.active");
-    if (activeLink) updateGlassTabIndicator(activeLink);
-  });
+  };
+
+  window.addEventListener("DOMContentLoaded", updateInitialIndicator);
+  window.addEventListener("load", updateInitialIndicator);
+  window.addEventListener("resize", updateInitialIndicator);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(updateInitialIndicator);
+  }
+  updateInitialIndicator();
 }
 
 // ----------------------------------------------------
