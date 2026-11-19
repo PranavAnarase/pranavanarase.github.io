@@ -15,7 +15,7 @@
   <!--
     - custom css link
   -->
-  <link rel="stylesheet" href="./assets/css/style.css?v=4">
+  <link rel="stylesheet" href="./assets/css/style.css?v=5">
 
   <!--
     - google font link
@@ -31,7 +31,13 @@
     - #MAIN
   -->
 
-  <main>
+  <div class="ambient-mesh" data-dynamic>
+    <div class="mesh-orb orb-1"></div>
+    <div class="mesh-orb orb-2"></div>
+    <div class="mesh-orb orb-3"></div>
+  </div>
+
+  <main id="portfolio-root" class="portfolio-root">
 
     <!--
       - #SIDEBAR
@@ -39,7 +45,7 @@
 
     <aside class="sidebar" data-sidebar>
 
-      <div class="sidebar-info">
+      <div class="sidebar-info" id="glass-sidebar-card">
 
         <figure class="avatar-box">
           <img src="./assets/images/my-avatar.jpg" alt="Pranav Anarase" width="80">
@@ -52,9 +58,10 @@
         </div>
 
         <button class="info_more-btn" data-sidebar-btn>
-          <span>Show Contacts</span>
-
-          <ion-icon name="chevron-down"></ion-icon>
+          <span class="label">
+            <span>Show Contacts</span>
+            <ion-icon name="chevron-down"></ion-icon>
+          </span>
         </button>
 
       </div>
@@ -134,27 +141,39 @@
         - #NAVBAR
       -->
 
-      <nav class="navbar">
+      <nav class="navbar" id="glass-navbar">
+
+        <div id="glass-tab-indicator" class="glass-tab-indicator"></div>
 
         <ul class="navbar-list">
           <li class="navbar-item">
-            <button class="navbar-link active" data-nav-link>About</button>
+            <button class="navbar-link active" data-nav-link>
+              <span class="label">About</span>
+            </button>
           </li>
 
           <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Resume</button>
+            <button class="navbar-link" data-nav-link>
+              <span class="label">Resume</span>
+            </button>
           </li>
 
           <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Portfolio</button>
+            <button class="navbar-link" data-nav-link>
+              <span class="label">Portfolio</span>
+            </button>
           </li>
 
           <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Publications</button>
+            <button class="navbar-link" data-nav-link>
+              <span class="label">Publications</span>
+            </button>
           </li>
 
           <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Contact</button>
+            <button class="navbar-link" data-nav-link>
+              <span class="label">Contact</span>
+            </button>
           </li>
         </ul>
 
@@ -610,19 +629,19 @@
           <ul class="filter-list">
 
             <li class="filter-item">
-              <button class="active" data-filter-btn>All</button>
+              <button class="active glass-btn" data-filter-btn><span class="label">All</span></button>
             </li>
 
             <li class="filter-item">
-              <button data-filter-btn>AI & Machine Learning</button>
+              <button class="glass-btn" data-filter-btn><span class="label">AI & Machine Learning</span></button>
             </li>
 
             <li class="filter-item">
-              <button data-filter-btn>Web Applications</button>
+              <button class="glass-btn" data-filter-btn><span class="label">Web Applications</span></button>
             </li>
 
             <li class="filter-item">
-              <button data-filter-btn>Hackathons</button>
+              <button class="glass-btn" data-filter-btn><span class="label">Hackathons</span></button>
             </li>
 
           </ul>
@@ -915,9 +934,11 @@
 
             <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
 
-            <button class="form-btn" type="submit" disabled data-form-btn>
-              <ion-icon name="paper-plane"></ion-icon>
-              <span>Send Message</span>
+            <button class="form-btn glass-btn" type="submit" disabled data-form-btn>
+              <span class="label">
+                <ion-icon name="paper-plane"></ion-icon>
+                <span>Send Message</span>
+              </span>
             </button>
 
             <div class="form-status" data-form-status style="display: none; margin-top: 18px; padding: 12px 18px; border-radius: 12px; font-size: var(--fs-6); text-align: center;"></div>
@@ -930,13 +951,22 @@
 
     </div>
 
+    <!--
+      - LiquidGlass Floating Dome Magnifier Lens (ybouane/liquidglass bevelMode: 1)
+    -->
+    <div id="glass-magnifier" class="glass-magnifier" title="Drag me to magnify content!">
+      <div class="magnifier-inner">
+        <ion-icon name="search-outline"></ion-icon>
+      </div>
+    </div>
+
   </main>
 
 
   <!--
     - custom js link
   -->
-  <script src="./assets/js/script.js?v=3"></script>
+  <script type="module" src="./assets/js/script.js?v=6"></script>
 
   <!--
     - ionicon link

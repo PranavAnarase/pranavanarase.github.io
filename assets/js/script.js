@@ -144,7 +144,7 @@ if (form && formInputs && formBtn) {
     e.preventDefault();
 
     const originalBtnContent = formBtn.innerHTML;
-    formBtn.innerHTML = '<ion-icon name="hourglass-outline"></ion-icon> <span>Sending...</span>';
+    formBtn.innerHTML = '<span class="label"><ion-icon name="hourglass-outline"></ion-icon> <span>Sending...</span></span>';
     formBtn.setAttribute("disabled", "");
 
     if (formStatus) {
@@ -191,7 +191,21 @@ if (form && formInputs && formBtn) {
 }
 
 // ----------------------------------------------------
-// 6. Page Navigation (About, Resume, Portfolio, Publications, Contact)
+// 6. Sliding Liquid Glass Tab Indicator
+// ----------------------------------------------------
+const glassTabIndicator = document.getElementById("glass-tab-indicator");
+
+function updateGlassTabIndicator(activeBtn) {
+  if (!glassTabIndicator || !activeBtn) return;
+  const rect = activeBtn.getBoundingClientRect();
+  const navRect = activeBtn.parentElement.parentElement.getBoundingClientRect();
+  const left = rect.left - navRect.left;
+  glassTabIndicator.style.width = `${rect.width}px`;
+  glassTabIndicator.style.transform = `translateX(${left}px)`;
+}
+
+// ----------------------------------------------------
+// 7. Page Navigation (About, Resume, Portfolio, Publications, Contact)
 // ----------------------------------------------------
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
 const pages = document.querySelectorAll("[data-page]");
@@ -204,6 +218,9 @@ if (navigationLinks && pages) {
       // Update active nav button
       navigationLinks.forEach(btn => btn.classList.remove("active"));
       this.classList.add("active");
+
+      // Slide the Liquid Glass Indicator
+      updateGlassTabIndicator(this);
 
       // Switch active article page
       let pageFound = false;
@@ -222,4 +239,106 @@ if (navigationLinks && pages) {
       }
     });
   });
+
+  // Position initial indicator on page load
+  window.addEventListener("load", () => {
+    const activeLink = document.querySelector(".navbar-link.active");
+    if (activeLink) updateGlassTabIndicator(activeLink);
+  });
+  window.addEventListener("resize", () => {
+    const activeLink = document.querySelector(".navbar-link.active");
+    if (activeLink) updateGlassTabIndicator(activeLink);
+  });
 }
+
+// ----------------------------------------------------
+// 8. LiquidGlass WebGL Shader Initialization (ybouane/liquidglass)
+// ----------------------------------------------------
+async function initLiquidGlassEffect() {
+  try {
+    // Wait for fonts so geometry is stable
+    if (document.fonts && document.fonts.ready) {
+      await document.fonts.ready;
+    }
+
+    // Try dynamic module import of local liquidglass library
+    const { LiquidGlass } = await import("./liquidglass.js");
+
+    const rootEl = document.getElementById("portfolio-root") || document.body;
+    const glassElements = [];
+
+    // 1. Sliding Tab Indicator
+    const indicatorEl = document.getElementById("glass-tab-indicator");
+    if (indicatorEl) {
+      indicatorEl.dataset.config = JSON.stringify({
+        bevelMode: 0,
+        cornerRadius: 18,
+        zRadius: 16,
+        blurAmount: 0.15,
+        refraction: 0.85,
+        chromAberration: 0.08,
+        edgeHighlight: 0.25,
+        shadowOpacity: 0.35,
+        specular: 0.5
+      });
+      glassElements.push(indicatorEl);
+    }
+
+    // 2. Sidebar Profile Glass Card
+    const sidebarGlass = document.getElementById("glass-sidebar-card");
+    if (sidebarGlass) {
+      sidebarGlass.dataset.config = JSON.stringify({
+        cornerRadius: 22,
+        zRadius: 18,
+        blurAmount: 0.15,
+        chromAberration: 0.06,
+        refraction: 0.7,
+        edgeHighlight: 0.18,
+        tintStrength: 0.05
+      });
+      glassElements.push(sidebarGlass);
+    }
+
+    // 3. Floating Draggable Dome Magnifier Lens (bevelMode: 1)
+    const magnifierEl = document.getElementById("glass-magnifier");
+    if (magnifierEl && window.innerWidth > 768) {
+      magnifierEl.dataset.config = JSON.stringify({
+        bevelMode: 1, // Dome / half-sphere magnifier lens
+        cornerRadius: 32,
+        zRadius: 32,
+        floating: true, // Draggable via Pointer Events
+        blurAmount: 0,
+        refraction: 1.25,
+        edgeHighlight: 0.3,
+        shadowOpacity: 0.35
+      });
+      glassElements.push(magnifierEl);
+    }
+
+    // 4. Interactive Glass Buttons (button: true)
+    const glassButtons = document.querySelectorAll(".glass-btn");
+    glassButtons.forEach(btn => {
+      btn.dataset.config = JSON.stringify({
+        button: true, // Tactile hover lift + press bevel flattening
+        cornerRadius: 14,
+        zRadius: 12,
+        blurAmount: 0.2,
+        specular: 0.5,
+        edgeHighlight: 0.2
+      });
+      glassElements.push(btn);
+    });
+
+    if (glassElements.length > 0) {
+      await LiquidGlass.init({
+        root: rootEl,
+        glassElements: glassElements
+      });
+      console.log("LiquidGlass (ybouane/liquidglass) initialized successfully with", glassElements.length, "elements.");
+    }
+  } catch (err) {
+    console.warn("LiquidGlass WebGL initialization skipped or fallback active:", err);
+  }
+}
+
+initLiquidGlassEffect();
