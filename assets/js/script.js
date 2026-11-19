@@ -78,7 +78,7 @@ const filterFunc = function (selectedValue) {
 
   filterItems.forEach(item => {
     const category = (item.dataset.category || "").trim().toLowerCase();
-    if (target === "all" || target === category) {
+    if (target === "all" || target === category || category.includes(target)) {
       item.classList.add("active");
     } else {
       item.classList.remove("active");
@@ -311,6 +311,13 @@ async function initLiquidGlassEffect() {
 // ----------------------------------------------------
 const searchIndex = [
   // Projects
+  {
+    title: "AuraStudy – AI-Adaptive Study Planner",
+    desc: "EdTech & Scheduling | FastAPI, React & MySQL. Personalized study planner using diagnostic gap analysis, prerequisite DAGs, and SM-2 spaced repetition.",
+    category: "project",
+    page: "portfolio",
+    icon: "sparkles-outline"
+  },
   {
     title: "AI Secondary Brain & Automation Framework",
     desc: "Autonomous workflow system using LangChain, NLP, and Python for context retrieval and scheduling.",
